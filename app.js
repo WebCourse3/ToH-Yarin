@@ -1,18 +1,57 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser');
 
-let heroes = [];
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get('/heroes', (req, res) => {});
+let heroes = [
+    { id: 0, name: 'Yarin'},
+    { id: 1, name: 'Superman'},
+    { id: 2, name: 'Spiderman'},
+];
 
-app.get('/heroes/:id', (req, res) => {});
+app.get('/heroes', (req, res) => {
+    res.send(heroes);
+});
 
-app.put('/heroes/:id', (req, res) => {});
+app.get('/heroes/:id', (req, res) => {
+    res.send(heroes.find( hero => hero.id == req.params.id ));
+});
 
-app.post('/heroes', (req, res) => {});
+app.put('/heroes/:id', (req, res) => {
+    if (req.params.id !== req.body.id) { res.end(); }
 
-app.delete('/heroes/:id', (req, res) => {});
+    let hero = heroes.find( hero => hero.id == req.params.id );
+    if (hero) {
+        hero.name = req.body.name;
+    } else {
+        heroes.push(req.body);
+    }
 
-app.delete('/heroes?name=term', (req, res) => {});
+    res.end();
+});
+
+app.post('/heroes', (req, res) => {
+    let hero = heroes.find( hero => hero.id == req.body.id );
+
+    if (hero) {
+        hero.name = req.body.name;
+    } else {
+        heroes.push(req.body);
+    }
+
+    res.end();
+});
+
+app.delete('/heroes/:id', (req, res) => {
+    heroes = heroes.filter( hero => hero.id != req.params.id );
+    res.end();
+});
+
+app.delete('/heroes?name=term', (req, res) => {
+    heroes = heroes.filter( hero => hero.name != req.query.name );
+    res.end();
+});
 
 app.listen(3000, () => console.log('ToH app listening on port 3000!'))
