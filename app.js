@@ -49,7 +49,7 @@ app.delete('/heroes/:id', (req, res) => {
     res.end();
 });
 
-app.delete('/heroes?name=term', (req, res) => {
+app.delete('/heroes', (req, res) => {
     heroes = heroes.filter( hero => hero.name != req.query.name );
     res.end();
 });
