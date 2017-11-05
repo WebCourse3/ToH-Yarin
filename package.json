@@ -1,0 +1,22 @@
+{
+  "name": "tour-of-heroes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebCourse3/ToH-Yarin.git"
+  },
+  "author": "Yarin",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/WebCourse3/ToH-Yarin/issues"
+  },
+  "homepage": "https://github.com/WebCourse3/ToH-Yarin#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
